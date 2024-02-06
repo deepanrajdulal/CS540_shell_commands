@@ -53,6 +53,7 @@ void displayMessage() {
         std::cerr << "Display message execution failed" << std::endl; //error message if command fails
 }
 
+//function to concatenate and display file content
 void concatenateFile() {
     std::string file_path;
     std::cout << "Enter the file path to display: ";
