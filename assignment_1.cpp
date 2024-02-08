@@ -53,22 +53,25 @@ void displayMessage() {
         std::cerr << "Display message execution failed" << std::endl; //error message if command fails
 }
 
-//function to concatenate and display file content
-void concatenateFile() {
-    std::string file_path;
-    std::cout << "Enter the file path to display: ";
+void concatenateFiles() {
+    std::string file_path1, file_path2;
+    std::cout << "Enter the first file path: ";
     std::cin.ignore(); // remove undesired character from input buffer
-    std::getline(std::cin, file_path); // read the entire file path
+    std::getline(std::cin, file_path1); // read the first file path
 
-    if (!file_path.empty()) {
-        std::string concatenate = "cat \"" + file_path + "\""; //string that has cat command and puts file path inside quotes
-        int output = system(concatenate.c_str()); //converting c++ string to c-style string for system function execution
+    std::cout << "Enter the second file path: ";
+    std::getline(std::cin, file_path2); // read the second file path
+
+    if (!file_path1.empty() && !file_path2.empty()) {
+        std::string concatenate = "cat \"" + file_path1 + "\" \"" + file_path2 + "\""; // concatenate both file paths
+        int output = system(concatenate.c_str()); // execute the concatenation command
 
         if (output == -1)
-            std::cerr << "File concatenation and display execution failed" << std::endl;  //error message if command fails
+            std::cerr << "File concatenation and display execution failed" << std::endl;  // error message if command fails
     } else
-        std::cerr << "File path cannot be empty" << std::endl;  //error message if no file path input
+        std::cerr << "File paths cannot be empty" << std::endl;  // error message if either file path is empty
 }
+
 
 //driver code
 int main() {
@@ -94,7 +97,7 @@ int main() {
         else if (input == 4)
             displayMessage();
         else if (input == 5)
-            concatenateFile();
+            concatenateFiles();
         else if (input == 6)
             break;
         else
